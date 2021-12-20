@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Lightbulb from "./components/Lightbulb";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lightbulbs: 0,
+    };
+  }
+  render() {
+    return (
+      <>
+        <div id="flex">
+          {Array(this.state.lightbulbs).fill("x").map(value => {
+            return (
+              <Lightbulb/>
+            );
+          })}
+        </div>
+
+        <div>
+          <button
+            onClick={() =>
+              this.setState({ lightbulbs: this.state.lightbulbs + 1 })
+            }
+          >
+            Add Lightbulb
+          </button>
+
+          <button
+            onClick={() =>
+              this.setState({ lightbulbs: this.state.lightbulbs - 1 })
+            }
+          >
+            Remove Lightbulb
+          </button>
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;
